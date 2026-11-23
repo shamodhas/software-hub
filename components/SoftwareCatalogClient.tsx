@@ -19,6 +19,7 @@ import {
   Code2,
 } from "lucide-react";
 import { BrandLogo } from "@/components/BrandLogo";
+import { AdSlot } from "@/components/AdSlot";
 
 export interface ArtifactItem {
   id: string;
@@ -573,6 +574,11 @@ export function SoftwareCatalogClient({
           </div>
         )}
       </section>
+
+      {/* Non-intrusive AdSense slot strictly below the main release list (renders null until NEXT_PUBLIC_ADSENSE_CLIENT is set) */}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <AdSlot slot="software-hub-catalog-bottom" />
+      </div>
 
       {/* Categories Section */}
       <section

@@ -15,7 +15,7 @@ export function Footer() {
   return (
     <footer className="border-t border-slate-800/80 bg-[#060B14] text-[#94A3B8]">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-5">
           <div className="md:col-span-2">
             <BrandLogo size="sm" showLabel />
             <p className="mt-3 max-w-md text-sm leading-relaxed text-[#94A3B8]">
@@ -76,6 +76,46 @@ export function Footer() {
 
           <div>
             <h3 className="text-xs font-semibold uppercase tracking-wider text-[#F8FAFC]">
+              Portal &amp; Legal
+            </h3>
+            <ul className="mt-3 space-y-2 text-sm">
+              <li>
+                <Link
+                  href="/about"
+                  className="transition hover:text-brand-primary"
+                >
+                  About {SITE_NAME}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/privacy"
+                  className="transition hover:text-brand-primary"
+                >
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/contact"
+                  className="transition hover:text-brand-primary"
+                >
+                  Contact &amp; Support
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/sitemap.xml"
+                  className="transition hover:text-brand-primary"
+                >
+                  Sitemap XML
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-[#F8FAFC]">
               Developer Links
             </h3>
             <ul className="mt-3 space-y-2 text-sm">
@@ -101,31 +141,37 @@ export function Footer() {
                   <span>github.com/shamodhas ↗</span>
                 </a>
               </li>
-              <li>
-                <Link
-                  href="/sitemap.xml"
-                  className="transition hover:text-brand-primary"
-                >
-                  Sitemap XML
-                </Link>
-              </li>
             </ul>
           </div>
         </div>
 
         <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-slate-800/80 pt-6 text-xs text-slate-500 sm:flex-row">
-          <p>
-            © {year} {SITE_NAME} — Built &amp; Maintained by{" "}
-            <a
-              href={OWNER_PORTFOLIO_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-slate-300 transition hover:text-brand-primary"
-            >
-              {OWNER_NAME}
-            </a>
-            . All rights reserved.
-          </p>
+          <div className="flex flex-wrap items-center gap-4">
+            <p>
+              © {year} {SITE_NAME} — Built &amp; Maintained by{" "}
+              <a
+                href={OWNER_PORTFOLIO_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-slate-300 transition hover:text-brand-primary"
+              >
+                {OWNER_NAME}
+              </a>
+              . All rights reserved.
+            </p>
+            <span className="hidden text-slate-700 sm:inline">•</span>
+            <div className="flex items-center gap-3 text-slate-400">
+              <Link href="/about" className="hover:text-brand-primary">
+                About
+              </Link>
+              <Link href="/privacy" className="hover:text-brand-primary">
+                Privacy
+              </Link>
+              <Link href="/contact" className="hover:text-brand-primary">
+                Contact
+              </Link>
+            </div>
+          </div>
           <div className="flex items-center gap-4">
             <SecretAdminTrigger />
           </div>

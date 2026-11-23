@@ -30,6 +30,7 @@ import {
   SITE_NAME,
 } from "@/lib/site";
 import { CopyShaButton } from "@/components/CopyShaButton";
+import { AdSlot } from "@/components/AdSlot";
 
 export const dynamic = "force-dynamic";
 
@@ -750,6 +751,9 @@ export default async function SoftwareDetailPage({
           ))}
         </div>
       </section>
+
+      {/* Non-intrusive AdSense slot strictly below Version History (renders null until NEXT_PUBLIC_ADSENSE_CLIENT is set) */}
+      <AdSlot slot="software-hub-detail-bottom" className="mt-10" />
     </div>
   );
 }
