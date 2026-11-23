@@ -85,6 +85,17 @@ const rootJsonLd = {
       url: OWNER_PORTFOLIO_URL,
       email: `mailto:${OWNER_EMAIL}`,
       jobTitle: "Software, Cloud, DevOps & AI Engineer",
+      knowsAbout: [
+        "Spring Boot",
+        "Node.js",
+        "TypeScript",
+        "Next.js",
+        "Docker",
+        "Kubernetes",
+        "Cloud Architecture",
+        "DevOps Engineering",
+        "AI & Machine Learning",
+      ],
       address: {
         "@type": "PostalAddress",
         addressLocality: "Panadura",
@@ -110,6 +121,29 @@ const rootJsonLd = {
         "@type": "WebSite",
         name: "Shamodha Sahan Portfolio",
         url: OWNER_PORTFOLIO_URL,
+      },
+    },
+    {
+      "@type": "CollectionPage",
+      "@id": `${CANONICAL_SITE_URL}/#collectionpage`,
+      url: CANONICAL_SITE_URL,
+      name: `${SITE_NAME} — Official Software & Open-Source Releases`,
+      description: SITE_DESCRIPTION,
+      isPartOf: {
+        "@id": `${CANONICAL_SITE_URL}/#website`,
+      },
+      author: {
+        "@id": `${OWNER_PORTFOLIO_URL}/#person`,
+      },
+      about: {
+        "@type": "SoftwareApplication",
+        name: SITE_NAME,
+        applicationCategory: "DeveloperApplication",
+        operatingSystem: "Windows, Linux, macOS, Cross-Platform",
+        url: CANONICAL_SITE_URL,
+        author: {
+          "@id": `${OWNER_PORTFOLIO_URL}/#person`,
+        },
       },
     },
   ],
