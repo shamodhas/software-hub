@@ -20,6 +20,10 @@ export const metadata: Metadata = {
   authors: [{ name: OWNER_NAME, url: OWNER_PORTFOLIO_URL }],
   creator: OWNER_NAME,
   publisher: OWNER_NAME,
+  icons: {
+    icon: "/images/logo-blue.png",
+    apple: "/images/logo-gold.png",
+  },
   alternates: {
     canonical: SITE_URL,
   },

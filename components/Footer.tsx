@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Terminal, Github, Globe } from "lucide-react";
+import { Github, Globe } from "lucide-react";
 import {
   OWNER_GITHUB_URL,
   OWNER_NAME,
@@ -7,6 +7,7 @@ import {
   SITE_NAME,
 } from "@/lib/site";
 import { SecretAdminTrigger } from "@/components/SecretAdminAccess";
+import { BrandLogo } from "@/components/BrandLogo";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -16,14 +17,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           <div className="md:col-span-2">
-            <div className="flex items-center gap-2.5">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-emerald-500/30 bg-emerald-500/10 text-emerald-400">
-                <Terminal className="h-4 w-4" />
-              </div>
-              <span className="text-base font-bold text-white">
-                {SITE_NAME}
-              </span>
-            </div>
+            <BrandLogo size="sm" showLabel />
             <p className="mt-3 max-w-md text-sm leading-relaxed text-slate-400">
               Official software release distribution portal, standalone desktop
               binaries, CLI scaffolds, and open-source packages engineered by{" "}

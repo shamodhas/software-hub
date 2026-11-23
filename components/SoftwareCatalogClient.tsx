@@ -18,6 +18,7 @@ import {
   ArrowRight,
   Code2,
 } from "lucide-react";
+import { BrandLogo } from "@/components/BrandLogo";
 
 export interface ArtifactItem {
   id: string;
@@ -172,8 +173,8 @@ export function SoftwareCatalogClient({
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-emerald-500/10 via-cyan-500/5 to-transparent" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1 text-xs font-medium text-emerald-300">
-              <Sparkles className="h-3.5 w-3.5 text-emerald-400" />
+            <div className="inline-flex items-center gap-2.5 rounded-full border border-emerald-500/30 bg-slate-900/90 py-1 pl-1.5 pr-4 text-xs font-medium text-emerald-300 shadow-sm">
+              <BrandLogo size="sm" />
               <span>
                 Official Release Registry &amp; Open-Source Distribution Portal
               </span>

@@ -2,8 +2,9 @@
 
 import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Shield, Lock, User, ArrowRight } from "lucide-react";
+import { Lock, User, ArrowRight } from "lucide-react";
 import { SITE_NAME } from "@/lib/site";
+import { BrandLogo } from "@/components/BrandLogo";
 
 function AdminLoginForm() {
   const router = useRouter();
@@ -48,8 +49,8 @@ function AdminLoginForm() {
 
   return (
     <div className="rounded-3xl border border-slate-800/90 bg-slate-900/80 p-8 shadow-2xl">
-      <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl border border-emerald-500/30 bg-emerald-500/10 text-emerald-400">
-        <Shield className="h-6 w-6" />
+      <div className="flex justify-center">
+        <BrandLogo size="lg" />
       </div>
 
       <h1 className="mt-5 text-center text-2xl font-bold text-white">

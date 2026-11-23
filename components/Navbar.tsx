@@ -1,6 +1,5 @@
 import Link from "next/link";
 import {
-  Terminal,
   ExternalLink,
   Github,
   Layers,
@@ -9,30 +8,19 @@ import {
 import {
   OWNER_GITHUB_URL,
   OWNER_PORTFOLIO_URL,
-  SITE_NAME,
 } from "@/lib/site";
+import { BrandLogo } from "@/components/BrandLogo";
 
 export function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-800/80 bg-slate-950/85 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6 lg:px-8">
-        <Link href="/" className="group flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-emerald-500/30 bg-gradient-to-br from-emerald-500/20 to-cyan-500/10 text-emerald-400 shadow-sm shadow-emerald-500/10 transition group-hover:border-emerald-400/50">
-            <Terminal className="h-5 w-5" />
-          </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="text-base font-bold tracking-tight text-white">
-                {SITE_NAME}
-              </span>
-              <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider text-emerald-400">
-                Hub
-              </span>
-            </div>
-            <p className="text-xs text-slate-400">
-              Software &amp; Open-Source Distribution by Shamodha Sahan
-            </p>
-          </div>
+        <Link href="/" className="group flex items-center">
+          <BrandLogo
+            size="md"
+            showLabel
+            subtitle="Software & Open-Source Distribution by Shamodha Sahan"
+          />
         </Link>
 
         <nav className="flex items-center gap-1 sm:gap-2">
