@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 
 export async function PATCH(
@@ -66,6 +67,9 @@ export async function PATCH(
       });
     });
 
+    revalidatePath("/");
+    revalidatePath("/software/[slug]", "page");
+
     return NextResponse.json(updated);
   } catch (err: unknown) {
     const message =
@@ -109,6 +113,9 @@ export async function DELETE(
         }
       }
     });
+
+    revalidatePath("/");
+    revalidatePath("/software/[slug]", "page");
 
     return NextResponse.json({ success: true });
   } catch (err: unknown) {

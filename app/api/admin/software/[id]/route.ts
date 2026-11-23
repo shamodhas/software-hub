@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 
 export async function GET(
@@ -70,6 +71,9 @@ export async function PATCH(
       where: { id: params.id },
       data,
     });
+    revalidatePath("/");
+    revalidatePath("/sitemap.xml");
+    revalidatePath(`/software/${updated.slug}`);
     return NextResponse.json(updated);
   } catch (err: unknown) {
     const message =
@@ -86,6 +90,8 @@ export async function DELETE(
     await prisma.software.delete({
       where: { id: params.id },
     });
+    revalidatePath("/");
+    revalidatePath("/sitemap.xml");
     return NextResponse.json({ success: true });
   } catch (err: unknown) {
     const message =

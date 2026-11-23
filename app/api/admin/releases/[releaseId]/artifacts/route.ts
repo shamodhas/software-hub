@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import crypto from "crypto";
 import path from "path";
@@ -113,6 +114,9 @@ export async function POST(
         downloadUrl,
       },
     });
+
+    revalidatePath("/");
+    revalidatePath("/software/[slug]", "page");
 
     return NextResponse.json(created, { status: 201 });
   } catch (err: unknown) {

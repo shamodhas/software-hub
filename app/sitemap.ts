@@ -1,13 +1,13 @@
 import { MetadataRoute } from "next";
 import { prisma } from "@/lib/prisma";
-import { SITE_URL } from "@/lib/site";
+import { CANONICAL_SITE_URL } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
     {
-      url: SITE_URL,
+      url: CANONICAL_SITE_URL,
       lastModified: new Date(),
       changeFrequency: "daily",
       priority: 1.0,
@@ -21,9 +21,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       orderBy: { updatedAt: "desc" },
     });
 
+    if (!publishedSoftware || publishedSoftware.length === 0) {
+      return staticRoutes;
+    }
+
     const softwareRoutes: MetadataRoute.Sitemap = publishedSoftware.map(
       (item) => ({
-        url: `${SITE_URL}/software/${item.slug}`,
+        url: `${CANONICAL_SITE_URL}/software/${item.slug}`,
         lastModified: item.updatedAt,
         changeFrequency: "weekly",
         priority: 0.9,
@@ -35,4 +39,3 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     return staticRoutes;
   }
 }
-

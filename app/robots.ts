@@ -1,5 +1,5 @@
 import { MetadataRoute } from "next";
-import { SITE_URL } from "@/lib/site";
+import { CANONICAL_SITE_URL } from "@/lib/site";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -10,7 +10,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/admin", "/api"],
       },
     ],
-    sitemap: `${SITE_URL}/sitemap.xml`,
+    sitemap: `${CANONICAL_SITE_URL}/sitemap.xml`,
+    host: CANONICAL_SITE_URL,
   };
 }
-

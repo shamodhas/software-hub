@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 
 function slugify(input: string): string {
@@ -46,6 +47,7 @@ export async function POST(req: NextRequest) {
         sortOrder,
       },
     });
+    revalidatePath("/");
     return NextResponse.json(created, { status: 201 });
   } catch (err: unknown) {
     const message =

@@ -5,6 +5,14 @@ import {
   CategoryItem,
 } from "@/components/SoftwareCatalogClient";
 import { AlertTriangle } from "lucide-react";
+import {
+  CANONICAL_SITE_URL,
+  OWNER_FULL_NAME,
+  OWNER_NAME,
+  OWNER_PORTFOLIO_URL,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+} from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 
@@ -96,8 +104,60 @@ export default async function HomePage({
 
   const initialCategory = searchParams?.category || "all";
 
+  const collectionJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": `${CANONICAL_SITE_URL}/#collection`,
+    url: CANONICAL_SITE_URL,
+    name: `${SITE_NAME} — Software & Open-Source Release Catalog`,
+    description: SITE_DESCRIPTION,
+    isPartOf: {
+      "@id": `${CANONICAL_SITE_URL}/#website`,
+    },
+    author: {
+      "@type": "Person",
+      name: OWNER_NAME,
+      alternateName: OWNER_FULL_NAME,
+      url: OWNER_PORTFOLIO_URL,
+    },
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: software.map((item, idx) => {
+        const latestVersion =
+          item.releases.find((r) => r.isLatest)?.version ||
+          item.releases[0]?.version ||
+          "1.0.0";
+        return {
+          "@type": "ListItem",
+          position: idx + 1,
+          url: `${CANONICAL_SITE_URL}/software/${item.slug}`,
+          item: {
+            "@type": "SoftwareApplication",
+            name: item.name,
+            description: item.tagline,
+            operatingSystem: item.platform,
+            applicationCategory: item.category.name,
+            softwareVersion: latestVersion,
+            license: item.license,
+            url: `${CANONICAL_SITE_URL}/software/${item.slug}`,
+            author: {
+              "@type": "Person",
+              name: OWNER_NAME,
+              url: OWNER_PORTFOLIO_URL,
+            },
+          },
+        };
+      }),
+    },
+  };
+
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }}
+      />
+
       {dbError && (
         <div className="mx-auto mt-6 max-w-5xl px-4">
           <div className="flex items-start gap-3 rounded-2xl border border-amber-500/40 bg-amber-500/10 p-4 text-xs text-amber-200">
@@ -107,8 +167,15 @@ export default async function HomePage({
                 PostgreSQL Database Not Initialized or Offline
               </p>
               <p className="mt-1 text-amber-200/80">
-                Run <code className="rounded bg-slate-950 px-1.5 py-0.5 font-mono text-emerald-400">npm run setup</code>{" "}
-                (or <code className="rounded bg-slate-950 px-1.5 py-0.5 font-mono text-emerald-400">npx prisma db push &amp;&amp; npm run db:seed</code>) to initialize and seed the database.
+                Run{" "}
+                <code className="rounded bg-slate-950 px-1.5 py-0.5 font-mono text-emerald-400">
+                  npm run setup
+                </code>{" "}
+                (or{" "}
+                <code className="rounded bg-slate-950 px-1.5 py-0.5 font-mono text-emerald-400">
+                  npx prisma db push &amp;&amp; npm run db:seed
+                </code>
+                ) to initialize and seed the database.
               </p>
             </div>
           </div>

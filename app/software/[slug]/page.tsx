@@ -20,10 +20,14 @@ import {
 } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import {
+  CANONICAL_SITE_URL,
+  OWNER_EMAIL,
+  OWNER_FULL_NAME,
+  OWNER_GITHUB_URL,
+  OWNER_LOCATION,
   OWNER_NAME,
   OWNER_PORTFOLIO_URL,
   SITE_NAME,
-  SITE_URL,
 } from "@/lib/site";
 import { CopyShaButton } from "@/components/CopyShaButton";
 
@@ -53,12 +57,25 @@ export async function generateMetadata({
 
   const latestVersion = software.releases[0]?.version || "1.0.0";
   const title = `${software.name} v${latestVersion} — Download & Source Releases`;
-  const description = `${software.tagline} Download verified ${software.platform} binaries, source code archives, and official releases on ${SITE_NAME}.`;
-  const canonicalUrl = `${SITE_URL}/software/${software.slug}`;
+  const description = `${software.tagline} Download verified ${software.platform} binaries, source code archives, and official releases by ${OWNER_NAME} on ${SITE_NAME}.`;
+  const canonicalUrl = `${CANONICAL_SITE_URL}/software/${software.slug}`;
 
   return {
     title,
     description,
+    keywords: [
+      software.name,
+      `${software.name} v${latestVersion}`,
+      software.category.name,
+      software.platform,
+      software.license,
+      OWNER_NAME,
+      OWNER_FULL_NAME,
+      SITE_NAME,
+    ],
+    authors: [{ name: OWNER_NAME, url: OWNER_PORTFOLIO_URL }],
+    creator: OWNER_NAME,
+    publisher: OWNER_NAME,
     alternates: {
       canonical: canonicalUrl,
     },
@@ -68,11 +85,20 @@ export async function generateMetadata({
       title: `${title} | ${SITE_NAME}`,
       description,
       siteName: SITE_NAME,
+      images: [
+        {
+          url: "/images/logo-blue.png",
+          width: 512,
+          height: 512,
+          alt: `${software.name} v${latestVersion} — ${SITE_NAME}`,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: `${title} | ${SITE_NAME}`,
       description,
+      images: ["/images/logo-blue.png"],
     },
   };
 }
@@ -278,29 +304,64 @@ export default async function SoftwareDetailPage({
     latestRelease?.artifacts.find((a) => a.artifactType === "EXECUTABLE") ||
     latestRelease?.artifacts[0];
 
+  const canonicalSoftwareUrl = `${CANONICAL_SITE_URL}/software/${software.slug}`;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
+    "@id": `${canonicalSoftwareUrl}#software`,
     name: software.name,
     headline: software.tagline,
     description: software.description,
     operatingSystem: software.platform,
     applicationCategory: software.category.name,
     softwareVersion: latestRelease?.version || "1.0.0",
+    releaseNotes: latestRelease?.changelog || undefined,
+    datePublished: latestRelease
+      ? latestRelease.releaseDate.toISOString()
+      : software.createdAt.toISOString(),
+    dateModified: software.updatedAt.toISOString(),
     license: software.license,
-    url: `${SITE_URL}/software/${software.slug}`,
+    url: canonicalSoftwareUrl,
+    codeRepository: software.githubRepoUrl || undefined,
+    softwareRequirements:
+      software.requirements.length > 0
+        ? software.requirements.join("; ")
+        : undefined,
     downloadUrl: primaryArtifact
-      ? `${SITE_URL}/api/download/${primaryArtifact.id}`
-      : `${SITE_URL}/software/${software.slug}`,
+      ? `${CANONICAL_SITE_URL}/api/download/${primaryArtifact.id}`
+      : canonicalSoftwareUrl,
+    fileSize: primaryArtifact?.fileSize || undefined,
     author: {
       "@type": "Person",
       name: OWNER_NAME,
+      alternateName: OWNER_FULL_NAME,
       url: OWNER_PORTFOLIO_URL,
+      email: `mailto:${OWNER_EMAIL}`,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Panadura",
+        addressCountry: "LK",
+        description: OWNER_LOCATION,
+      },
+      sameAs: [OWNER_PORTFOLIO_URL, OWNER_GITHUB_URL],
+    },
+    publisher: {
+      "@type": "Person",
+      name: OWNER_NAME,
+      url: OWNER_PORTFOLIO_URL,
+    },
+    isPartOf: {
+      "@type": "WebSite",
+      "@id": `${CANONICAL_SITE_URL}/#website`,
+      name: SITE_NAME,
+      url: CANONICAL_SITE_URL,
     },
     offers: {
       "@type": "Offer",
       price: "0.00",
       priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
     },
   };
 

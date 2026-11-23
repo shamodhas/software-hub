@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 
 export async function DELETE(
@@ -9,6 +10,8 @@ export async function DELETE(
     await prisma.releaseArtifact.delete({
       where: { id: params.artifactId },
     });
+    revalidatePath("/");
+    revalidatePath("/software/[slug]", "page");
     return NextResponse.json({ success: true });
   } catch (err: unknown) {
     const message =
