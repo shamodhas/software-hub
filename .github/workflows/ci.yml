@@ -1,0 +1,42 @@
+name: Software Hub CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build-and-verify:
+    name: Typecheck, Prisma Generate & Next.js Build
+    runs-on: ubuntu-latest
+
+    env:
+      DATABASE_URL: "postgresql://shamodha:shamodha_secret_pass@localhost:5432/shamodha_releases?schema=public"
+      NEXT_PUBLIC_SITE_URL: "https://releases.shamodha.com"
+      AUTH_SECRET: "ci_test_jwt_signing_secret_key_2026"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Generate Prisma Client
+        run: npx prisma generate
+
+      - name: Run TypeScript typecheck
+        run: npm run typecheck
+
+      - name: Build Next.js production bundle
+        run: npm run build

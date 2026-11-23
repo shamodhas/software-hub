@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: shamodha_releases_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: shamodha
+      POSTGRES_PASSWORD: shamodha_secret_pass
+      POSTGRES_DB: shamodha_releases
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U shamodha -d shamodha_releases"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  postgres_data:
+

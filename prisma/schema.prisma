@@ -1,0 +1,71 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id          String     @id @default(cuid())
+  name        String     @unique
+  slug        String     @unique
+  description String?
+  sortOrder   Int        @default(0)
+  software    Software[]
+}
+
+model Software {
+  id                String    @id @default(cuid())
+  slug              String    @unique
+  name              String
+  tagline           String
+  description       String    @db.Text
+  categoryId        String
+  category          Category  @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  platform          String
+  license           String
+  status            String    @default("PUBLISHED")
+  featured          Boolean   @default(false)
+  githubRepoUrl     String?
+  githubReleasesUrl String?
+  docsUrl           String?
+  requirements      String[]
+  setupSteps        String[]
+  iconName          String?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  releases          Release[]
+}
+
+model Release {
+  id           String            @id @default(cuid())
+  softwareId   String
+  software     Software          @relation(fields: [softwareId], references: [id], onDelete: Cascade)
+  version      String
+  releaseTitle String?
+  channel      String            @default("STABLE")
+  isLatest     Boolean           @default(false)
+  releaseDate  DateTime          @default(now())
+  changelog    String            @db.Text
+  githubTagUrl String?
+  artifacts    ReleaseArtifact[]
+  createdAt    DateTime          @default(now())
+
+  @@unique([softwareId, version])
+}
+
+model ReleaseArtifact {
+  id            String  @id @default(cuid())
+  releaseId     String
+  release       Release @relation(fields: [releaseId], references: [id], onDelete: Cascade)
+  artifactType  String
+  label         String
+  fileName      String?
+  fileSize      String?
+  sha256        String?
+  downloadUrl   String
+  downloadCount Int     @default(0)
+}
+
