@@ -3,10 +3,13 @@ import { SignJWT, jwtVerify } from "jose";
 export const ADMIN_COOKIE_NAME = "shamodha_admin_token";
 
 function getSecretKey(): Uint8Array {
-  const secret =
-    process.env.AUTH_SECRET ||
-    "super_secret_jwt_signing_key_change_in_production_2026";
-  return new TextEncoder().encode(secret);
+  const secret = process.env.AUTH_SECRET;
+  if (!secret && process.env.NODE_ENV === "production") {
+    throw new Error("AUTH_SECRET environment variable is required in production.");
+  }
+  return new TextEncoder().encode(
+    secret || "dev_only_fallback_jwt_signing_secret_software_hub"
+  );
 }
 
 export interface AdminTokenPayload {
@@ -14,7 +17,9 @@ export interface AdminTokenPayload {
   role: "admin";
 }
 
-export async function signAdminToken(payload: AdminTokenPayload): Promise<string> {
+export async function signAdminToken(
+  payload: AdminTokenPayload
+): Promise<string> {
   return new SignJWT({ ...payload })
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
@@ -22,7 +27,9 @@ export async function signAdminToken(payload: AdminTokenPayload): Promise<string
     .sign(getSecretKey());
 }
 
-export async function verifyAdminToken(token: string): Promise<AdminTokenPayload | null> {
+export async function verifyAdminToken(
+  token: string
+): Promise<AdminTokenPayload | null> {
   try {
     const { payload } = await jwtVerify(token, getSecretKey());
     if (payload.role === "admin" && typeof payload.username === "string") {
@@ -36,4 +43,3 @@ export async function verifyAdminToken(token: string): Promise<AdminTokenPayload
     return null;
   }
 }
-

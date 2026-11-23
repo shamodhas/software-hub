@@ -18,7 +18,7 @@ export async function POST(
     const channel = ["STABLE", "BETA", "ALPHA"].includes(body.channel)
       ? body.channel
       : "STABLE";
-    const isLatest = Boolean(body.isLatest);
+    const requestedLatest = Boolean(body.isLatest);
     const changelog = String(body.changelog || "").trim();
     const githubTagUrl = body.githubTagUrl
       ? String(body.githubTagUrl).trim()
@@ -32,6 +32,12 @@ export async function POST(
     }
 
     const created = await prisma.$transaction(async (tx) => {
+      const existingCount = await tx.release.count({
+        where: { softwareId },
+      });
+
+      const isLatest = existingCount === 0 ? true : requestedLatest;
+
       if (isLatest) {
         await tx.release.updateMany({
           where: { softwareId },
@@ -62,4 +68,3 @@ export async function POST(
     return NextResponse.json({ error: message }, { status: 400 });
   }
 }
-

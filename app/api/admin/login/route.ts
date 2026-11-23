@@ -4,10 +4,27 @@ import { ADMIN_COOKIE_NAME, signAdminToken } from "@/lib/auth";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { username, password } = body;
+    const username = String(body.username || "").trim();
+    const password = String(body.password || "");
 
-    const validUsername = process.env.ADMIN_USERNAME || "admin";
-    const validPassword = process.env.ADMIN_PASSWORD || "changeme123";
+    const isProd =
+      process.env.NODE_ENV === "production" ||
+      process.env.APP_ENV === "production";
+
+    const validUsername =
+      process.env.ADMIN_USERNAME || (isProd ? "" : "admin");
+    const validPassword =
+      process.env.ADMIN_PASSWORD || (isProd ? "" : "123456");
+
+    if (!validUsername || !validPassword) {
+      return NextResponse.json(
+        {
+          error:
+            "Server authentication credentials (ADMIN_USERNAME / ADMIN_PASSWORD) are not configured.",
+        },
+        { status: 500 }
+      );
+    }
 
     if (username !== validUsername || password !== validPassword) {
       return NextResponse.json(
@@ -22,7 +39,7 @@ export async function POST(req: NextRequest) {
     res.cookies.set(ADMIN_COOKIE_NAME, token, {
       httpOnly: true,
       sameSite: "lax",
-      secure: process.env.NODE_ENV === "production",
+      secure: isProd,
       path: "/",
       maxAge: 60 * 60 * 24 * 7, // 7 days
     });
@@ -35,4 +52,3 @@ export async function POST(req: NextRequest) {
     );
   }
 }
-

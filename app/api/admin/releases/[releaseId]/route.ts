@@ -79,9 +79,37 @@ export async function DELETE(
   { params }: { params: { releaseId: string } }
 ) {
   try {
-    await prisma.release.delete({
+    const existing = await prisma.release.findUnique({
       where: { id: params.releaseId },
     });
+
+    if (!existing) {
+      return NextResponse.json(
+        { error: "Release not found." },
+        { status: 404 }
+      );
+    }
+
+    await prisma.$transaction(async (tx) => {
+      await tx.release.delete({
+        where: { id: params.releaseId },
+      });
+
+      if (existing.isLatest) {
+        const nextLatest = await tx.release.findFirst({
+          where: { softwareId: existing.softwareId },
+          orderBy: { releaseDate: "desc" },
+        });
+
+        if (nextLatest) {
+          await tx.release.update({
+            where: { id: nextLatest.id },
+            data: { isLatest: true },
+          });
+        }
+      }
+    });
+
     return NextResponse.json({ success: true });
   } catch (err: unknown) {
     const message =
@@ -89,4 +117,3 @@ export async function DELETE(
     return NextResponse.json({ error: message }, { status: 400 });
   }
 }
-
