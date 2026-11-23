@@ -1,3 +1,1 @@
-# Software Hub (https://releases.shamodha.com) — Authorized Digital Sellers (ads.txt)
-# Replace pub-XXXXXXXXXXXXXXXX with your Google AdSense Publisher ID once approved:
-# google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+google.com, pub-8135575817026090, DIRECT, f08c47fec0942fa0

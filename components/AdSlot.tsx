@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { ADSENSE_CLIENT_ID } from "@/lib/site";
 
 declare global {
   interface Window {
@@ -16,9 +17,8 @@ export interface AdSlotProps {
 }
 
 /**
- * Reusable, CLS-safe Google AdSense slot.
- * Renders nothing (`null`) when `NEXT_PUBLIC_ADSENSE_CLIENT` is not set,
- * ensuring zero broken or empty boxes appear prior to AdSense activation.
+ * Reusable, CLS-safe Google AdSense slot (`ca-pub-8135575817026090`).
+ * Placed strictly outside release cards and download buttons.
  */
 export function AdSlot({
   slot,
@@ -26,7 +26,8 @@ export function AdSlot({
   responsive = true,
   className = "",
 }: AdSlotProps) {
-  const adClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT?.trim();
+  const adClient =
+    process.env.NEXT_PUBLIC_ADSENSE_CLIENT?.trim() || ADSENSE_CLIENT_ID;
   const initializedRef = useRef(false);
 
   useEffect(() => {

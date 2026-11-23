@@ -18,6 +18,9 @@ export const OWNER_LOCATION = "Panadura, Sri Lanka";
 export const OWNER_PORTFOLIO_URL = "https://shamodha.com";
 export const OWNER_GITHUB_URL = "https://github.com/shamodhas";
 export const REPO_GITHUB_URL = "https://github.com/shamodhas/software-hub";
+export const ADSENSE_CLIENT_ID =
+  process.env.NEXT_PUBLIC_ADSENSE_CLIENT?.trim() ||
+  "ca-pub-8135575817026090";
 
 export const SITE_KEYWORDS = [
   "Software Hub",

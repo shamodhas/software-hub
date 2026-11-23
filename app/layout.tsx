@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import {
+  ADSENSE_CLIENT_ID,
   CANONICAL_SITE_URL,
   OWNER_EMAIL,
   OWNER_FULL_NAME,
@@ -40,6 +41,9 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: CANONICAL_SITE_URL,
+  },
+  other: {
+    "google-adsense-account": ADSENSE_CLIENT_ID,
   },
   openGraph: {
     type: "website",
@@ -155,7 +159,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const adsenseClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT?.trim();
+  const adsenseClient =
+    process.env.NEXT_PUBLIC_ADSENSE_CLIENT?.trim() || ADSENSE_CLIENT_ID;
 
   return (
     <html
