@@ -1,11 +1,12 @@
 import Link from "next/link";
-import { Terminal, Github, Globe, ShieldCheck } from "lucide-react";
+import { Terminal, Github, Globe } from "lucide-react";
 import {
   OWNER_GITHUB_URL,
   OWNER_NAME,
   OWNER_PORTFOLIO_URL,
   SITE_NAME,
 } from "@/lib/site";
+import { SecretAdminTrigger } from "@/components/SecretAdminAccess";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -81,7 +82,7 @@ export function Footer() {
 
           <div>
             <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-200">
-              Developer &amp; Admin Links
+              Developer Links
             </h3>
             <ul className="mt-3 space-y-2 text-sm">
               <li>
@@ -114,15 +115,6 @@ export function Footer() {
                   Sitemap XML
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="/admin"
-                  className="inline-flex items-center gap-1.5 text-emerald-400/90 transition hover:text-emerald-300"
-                >
-                  <ShieldCheck className="h-3.5 w-3.5" />
-                  <span>Release Admin Panel (/admin)</span>
-                </Link>
-              </li>
             </ul>
           </div>
         </div>
@@ -141,14 +133,10 @@ export function Footer() {
             . All rights reserved.
           </p>
           <div className="flex items-center gap-4">
-            <span className="inline-flex items-center gap-1.5 font-mono text-[11px] text-slate-400">
-              <span className="h-2 w-2 rounded-full bg-emerald-400"></span>
-              PostgreSQL Release Registry Active
-            </span>
+            <SecretAdminTrigger />
           </div>
         </div>
       </div>
     </footer>
   );
 }
-

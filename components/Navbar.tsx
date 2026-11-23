@@ -5,7 +5,6 @@ import {
   Github,
   Layers,
   Package,
-  Shield,
 } from "lucide-react";
 import {
   OWNER_GITHUB_URL,
@@ -70,17 +69,8 @@ export function Navbar() {
             <span className="hidden sm:inline">GitHub</span>
             <span className="text-xs text-slate-400">↗</span>
           </a>
-          <Link
-            href="/admin"
-            title="Admin Management Portal"
-            className="ml-1 flex items-center gap-1.5 rounded-lg border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-2 text-xs font-medium text-emerald-300 transition hover:border-emerald-500/40 hover:bg-emerald-500/20"
-          >
-            <Shield className="h-3.5 w-3.5" />
-            <span className="hidden md:inline">Admin</span>
-          </Link>
         </nav>
       </div>
     </header>
   );
 }
-
