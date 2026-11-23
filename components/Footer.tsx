@@ -13,19 +13,19 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-slate-800/80 bg-slate-950 text-slate-400">
+    <footer className="border-t border-slate-800/80 bg-[#060B14] text-[#94A3B8]">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           <div className="md:col-span-2">
             <BrandLogo size="sm" showLabel />
-            <p className="mt-3 max-w-md text-sm leading-relaxed text-slate-400">
+            <p className="mt-3 max-w-md text-sm leading-relaxed text-[#94A3B8]">
               Official software release distribution portal, standalone desktop
               binaries, CLI scaffolds, and open-source packages engineered by{" "}
               <a
                 href={OWNER_PORTFOLIO_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium text-emerald-400 hover:underline"
+                className="brand-link font-medium hover:underline"
               >
                 {OWNER_NAME}
               </a>
@@ -35,14 +35,14 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-200">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-[#F8FAFC]">
               Quick Categories
             </h3>
             <ul className="mt-3 space-y-2 text-sm">
               <li>
                 <Link
                   href="/?category=desktop-utilities#catalog"
-                  className="transition hover:text-emerald-400"
+                  className="transition hover:text-brand-primary"
                 >
                   Desktop Utilities
                 </Link>
@@ -50,7 +50,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/?category=cli-devops#catalog"
-                  className="transition hover:text-emerald-400"
+                  className="transition hover:text-brand-primary"
                 >
                   CLI &amp; DevOps
                 </Link>
@@ -58,7 +58,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/?category=libraries-starters#catalog"
-                  className="transition hover:text-emerald-400"
+                  className="transition hover:text-brand-primary"
                 >
                   Libraries &amp; Starters
                 </Link>
@@ -66,7 +66,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/?category=ai-automation#catalog"
-                  className="transition hover:text-emerald-400"
+                  className="transition hover:text-brand-primary"
                 >
                   AI &amp; Automation
                 </Link>
@@ -75,7 +75,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-200">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-[#F8FAFC]">
               Developer Links
             </h3>
             <ul className="mt-3 space-y-2 text-sm">
@@ -84,7 +84,7 @@ export function Footer() {
                   href={OWNER_PORTFOLIO_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 transition hover:text-emerald-400"
+                  className="inline-flex items-center gap-1.5 transition hover:text-brand-primary"
                 >
                   <Globe className="h-3.5 w-3.5" />
                   <span>shamodha.com ↗</span>
@@ -95,7 +95,7 @@ export function Footer() {
                   href={OWNER_GITHUB_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 transition hover:text-emerald-400"
+                  className="inline-flex items-center gap-1.5 transition hover:text-brand-primary"
                 >
                   <Github className="h-3.5 w-3.5" />
                   <span>github.com/shamodhas ↗</span>
@@ -104,7 +104,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/sitemap.xml"
-                  className="transition hover:text-emerald-400"
+                  className="transition hover:text-brand-primary"
                 >
                   Sitemap XML
                 </Link>
@@ -120,7 +120,7 @@ export function Footer() {
               href={OWNER_PORTFOLIO_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-slate-300 hover:text-emerald-400"
+              className="text-slate-300 transition hover:text-brand-primary"
             >
               {OWNER_NAME}
             </a>

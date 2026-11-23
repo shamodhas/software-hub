@@ -70,11 +70,11 @@ export default async function AdminDashboardPage() {
               </p>
               <p className="mt-1 text-amber-200/80">
                 Could not query PostgreSQL. Ensure Docker PostgreSQL (or Neon) is running and run{" "}
-                <code className="rounded bg-slate-950 px-1.5 py-0.5 font-mono text-emerald-400">
+                <code className="brand-text rounded bg-[#060B14] px-1.5 py-0.5 font-mono">
                   npm run setup
                 </code>{" "}
                 for dev or{" "}
-                <code className="rounded bg-slate-950 px-1.5 py-0.5 font-mono text-emerald-400">
+                <code className="brand-text rounded bg-[#060B14] px-1.5 py-0.5 font-mono">
                   npm run setup:prod
                 </code>{" "}
                 for production.

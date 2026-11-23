@@ -168,11 +168,11 @@ export default async function HomePage({
               </p>
               <p className="mt-1 text-amber-200/80">
                 Run{" "}
-                <code className="rounded bg-slate-950 px-1.5 py-0.5 font-mono text-emerald-400">
+                <code className="brand-text rounded bg-[#060B14] px-1.5 py-0.5 font-mono">
                   npm run setup
                 </code>{" "}
                 (or{" "}
-                <code className="rounded bg-slate-950 px-1.5 py-0.5 font-mono text-emerald-400">
+                <code className="brand-text rounded bg-[#060B14] px-1.5 py-0.5 font-mono">
                   npx prisma db push &amp;&amp; npm run db:seed
                 </code>
                 ) to initialize and seed the database.

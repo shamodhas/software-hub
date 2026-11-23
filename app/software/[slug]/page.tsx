@@ -87,7 +87,7 @@ export async function generateMetadata({
       siteName: SITE_NAME,
       images: [
         {
-          url: "/images/logo-blue.png",
+          url: "/images/logo-blue-removebg.png",
           width: 512,
           height: 512,
           alt: `${software.name} v${latestVersion} — ${SITE_NAME}`,
@@ -98,7 +98,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: `${title} | ${SITE_NAME}`,
       description,
-      images: ["/images/logo-blue.png"],
+      images: ["/images/logo-blue-removebg.png"],
     },
   };
 }
@@ -119,11 +119,10 @@ const ARTIFACT_GROUPS = [
     key: "BINARIES",
     types: ["EXECUTABLE", "PORTABLE_ZIP"],
     title: "Compiled Executable / Binary",
-    subtitle: "Ready-to-run standalone installer, binary executable, or portable package",
-    badgeClass:
-      "border-emerald-500/30 bg-emerald-500/10 text-emerald-400",
-    buttonClass:
-      "bg-emerald-500 text-slate-950 hover:bg-emerald-400 shadow-sm shadow-emerald-500/20",
+    subtitle:
+      "Ready-to-run standalone installer, binary executable, or portable package",
+    badgeClass: "brand-badge",
+    buttonClass: "brand-btn-primary",
     Icon: Cpu,
   },
   {
@@ -131,7 +130,7 @@ const ARTIFACT_GROUPS = [
     types: ["PACKAGE_REGISTRY"],
     title: "Package Registry",
     subtitle: "Managed distribution via NPM, Maven Central, or PyPI",
-    badgeClass: "border-amber-500/30 bg-amber-500/10 text-amber-300",
+    badgeClass: "border-amber-500/35 bg-amber-500/10 text-amber-300",
     buttonClass:
       "border border-amber-500/40 bg-amber-500/15 text-amber-200 hover:bg-amber-500/25",
     Icon: Package,
@@ -141,9 +140,9 @@ const ARTIFACT_GROUPS = [
     types: ["SOURCE_ARCHIVE"],
     title: "Source Code Archive",
     subtitle: "Immutable release snapshot archive (.zip / .tar.gz)",
-    badgeClass: "border-violet-500/30 bg-violet-500/10 text-violet-300",
+    badgeClass: "border-purple-500/35 bg-purple-500/10 text-purple-300",
     buttonClass:
-      "border border-slate-700 bg-slate-900 text-slate-100 hover:border-slate-600 hover:bg-slate-800",
+      "border border-slate-700 bg-[#0D1424] text-slate-100 hover:border-brand-border hover:bg-[#131D33]",
     Icon: FileArchive,
   },
   {
@@ -151,9 +150,9 @@ const ARTIFACT_GROUPS = [
     types: ["GITHUB_SOURCE"],
     title: "GitHub Source & Releases",
     subtitle: "Direct link to GitHub repository tree and release tags",
-    badgeClass: "border-cyan-500/30 bg-cyan-500/10 text-cyan-300",
+    badgeClass: "border-sky-500/35 bg-sky-500/10 text-sky-300",
     buttonClass:
-      "border border-slate-700 bg-slate-900 text-slate-100 hover:border-slate-600 hover:bg-slate-800",
+      "border border-slate-700 bg-[#0D1424] text-slate-100 hover:border-brand-border hover:bg-[#131D33]",
     Icon: FileCode2,
   },
 ];
@@ -161,7 +160,7 @@ const ARTIFACT_GROUPS = [
 function ArtifactMatrix({ artifacts }: { artifacts: ArtifactRecord[] }) {
   if (artifacts.length === 0) {
     return (
-      <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-6 text-sm text-slate-400">
+      <div className="rounded-xl border border-slate-800 bg-[#0D1424]/70 p-6 text-sm text-[#94A3B8]">
         No downloadable artifacts registered for this release yet.
       </div>
     );
@@ -180,7 +179,7 @@ function ArtifactMatrix({ artifacts }: { artifacts: ArtifactRecord[] }) {
         return (
           <div
             key={group.key}
-            className="flex flex-col justify-between rounded-2xl border border-slate-800/90 bg-slate-900/70 p-5"
+            className="brand-surface-card flex flex-col justify-between rounded-2xl p-5"
           >
             <div>
               <div className="flex items-center justify-between gap-2">
@@ -191,10 +190,10 @@ function ArtifactMatrix({ artifacts }: { artifacts: ArtifactRecord[] }) {
                     <IconComponent className="h-4 w-4" />
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-white">
+                    <h4 className="text-sm font-bold text-[#F8FAFC]">
                       {group.title}
                     </h4>
-                    <p className="text-xs text-slate-400">{group.subtitle}</p>
+                    <p className="text-xs text-[#94A3B8]">{group.subtitle}</p>
                   </div>
                 </div>
               </div>
@@ -203,12 +202,12 @@ function ArtifactMatrix({ artifacts }: { artifacts: ArtifactRecord[] }) {
                 {groupArtifacts.map((art) => (
                   <div
                     key={art.id}
-                    className="rounded-xl border border-slate-800/90 bg-slate-950/80 p-3.5"
+                    className="rounded-xl border border-slate-800/90 bg-[#060B14] p-3.5"
                   >
                     <div className="flex flex-wrap items-start justify-between gap-2">
                       <div>
                         <div className="flex flex-wrap items-center gap-2">
-                          <span className="text-sm font-semibold text-slate-100">
+                          <span className="text-sm font-semibold text-[#F8FAFC]">
                             {art.label}
                           </span>
                           <span
@@ -218,18 +217,18 @@ function ArtifactMatrix({ artifacts }: { artifacts: ArtifactRecord[] }) {
                           </span>
                         </div>
 
-                        <div className="mt-1.5 flex flex-wrap items-center gap-3 text-xs text-slate-400">
+                        <div className="mt-1.5 flex flex-wrap items-center gap-3 text-xs text-[#94A3B8]">
                           {art.fileName && (
                             <span className="font-mono text-slate-300">
                               {art.fileName}
                             </span>
                           )}
                           {art.fileSize && (
-                            <span className="rounded bg-slate-900 px-1.5 py-0.5 font-mono">
+                            <span className="rounded bg-[#0D1424] px-1.5 py-0.5 font-mono">
                               {art.fileSize}
                             </span>
                           )}
-                          <span className="font-mono text-emerald-400/90">
+                          <span className="brand-text font-mono">
                             {art.downloadCount.toLocaleString()} downloads
                           </span>
                         </div>
@@ -237,7 +236,7 @@ function ArtifactMatrix({ artifacts }: { artifacts: ArtifactRecord[] }) {
 
                       <a
                         href={`/api/download/${art.id}`}
-                        className={`inline-flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-semibold transition ${group.buttonClass}`}
+                        className={`inline-flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-bold transition ${group.buttonClass}`}
                       >
                         <Download className="h-3.5 w-3.5" />
                         <span>
@@ -377,17 +376,17 @@ export default async function SoftwareDetailPage({
       <div className="flex flex-wrap items-center justify-between gap-4">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-sm font-medium text-slate-400 transition hover:text-emerald-400"
+          className="inline-flex items-center gap-2 text-sm font-medium text-[#94A3B8] transition hover:text-brand-primary"
         >
           <ArrowLeft className="h-4 w-4" />
           <span>Back to All Software Releases</span>
         </Link>
 
-        <div className="flex items-center gap-2 text-xs text-slate-400">
+        <div className="flex items-center gap-2 text-xs text-[#94A3B8]">
           <span>Category:</span>
           <Link
             href={`/?category=${software.category.slug}#catalog`}
-            className="rounded-md border border-slate-800 bg-slate-900 px-2.5 py-1 font-medium text-cyan-300 hover:border-cyan-500/40"
+            className="brand-badge rounded-md px-2.5 py-1 font-medium"
           >
             {software.category.name}
           </Link>
@@ -395,27 +394,27 @@ export default async function SoftwareDetailPage({
       </div>
 
       {/* Software Header Hero Card */}
-      <div className="mt-6 rounded-3xl border border-slate-800/90 bg-gradient-to-b from-slate-900/90 to-slate-950 p-6 shadow-xl sm:p-8">
+      <div className="brand-card-featured mt-6 rounded-3xl p-6 sm:p-8">
         <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-start">
           <div className="max-w-3xl">
             <div className="flex flex-wrap items-center gap-2.5">
-              <span className="rounded-lg border border-cyan-500/30 bg-cyan-500/10 px-2.5 py-1 text-xs font-semibold text-cyan-300">
+              <span className="rounded-lg border border-slate-700 bg-[#0D1424] px-2.5 py-1 text-xs font-semibold text-slate-200">
                 {software.category.name}
               </span>
               {latestRelease && (
-                <span className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 font-mono text-xs font-bold text-emerald-400">
+                <span className="brand-badge rounded-lg px-2.5 py-1 font-mono text-xs font-bold">
                   v{latestRelease.version} ({latestRelease.channel})
                 </span>
               )}
-              <span className="rounded-lg border border-slate-800 bg-slate-900 px-2.5 py-1 text-xs text-slate-300">
+              <span className="rounded-lg border border-slate-800 bg-[#060B14] px-2.5 py-1 text-xs text-slate-300">
                 {software.platform}
               </span>
-              <span className="rounded-lg border border-slate-800 bg-slate-900 px-2.5 py-1 text-xs text-slate-300">
+              <span className="rounded-lg border border-slate-800 bg-[#060B14] px-2.5 py-1 text-xs text-slate-300">
                 License: {software.license}
               </span>
             </div>
 
-            <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+            <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-[#F8FAFC] sm:text-4xl">
               {software.name}
             </h1>
             <p className="mt-3 text-base leading-relaxed text-slate-300 sm:text-lg">
@@ -423,18 +422,18 @@ export default async function SoftwareDetailPage({
             </p>
 
             {/* Quick Meta Row */}
-            <div className="mt-5 flex flex-wrap items-center gap-4 text-xs text-slate-400">
+            <div className="mt-5 flex flex-wrap items-center gap-4 text-xs text-[#94A3B8]">
               <span className="inline-flex items-center gap-1.5">
-                <Cpu className="h-4 w-4 text-cyan-400" />
+                <Cpu className="brand-text-secondary h-4 w-4" />
                 <span>Platform: {software.platform}</span>
               </span>
               <span className="inline-flex items-center gap-1.5">
-                <Scale className="h-4 w-4 text-emerald-400" />
+                <Scale className="brand-text h-4 w-4" />
                 <span>License: {software.license}</span>
               </span>
               {latestRelease && (
                 <span className="inline-flex items-center gap-1.5">
-                  <Calendar className="h-4 w-4 text-emerald-400" />
+                  <Calendar className="brand-text h-4 w-4" />
                   <span>
                     Released:{" "}
                     {new Date(latestRelease.releaseDate).toLocaleDateString(
@@ -448,7 +447,7 @@ export default async function SoftwareDetailPage({
                   </span>
                 </span>
               )}
-              <span className="inline-flex items-center gap-1.5 font-mono text-emerald-400">
+              <span className="brand-text inline-flex items-center gap-1.5 font-mono">
                 <Download className="h-4 w-4" />
                 <span>{totalDownloads.toLocaleString()} total downloads</span>
               </span>
@@ -460,7 +459,7 @@ export default async function SoftwareDetailPage({
             {primaryArtifact && (
               <a
                 href={`/api/download/${primaryArtifact.id}`}
-                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 px-5 py-3.5 text-sm font-bold text-slate-950 shadow-lg shadow-emerald-500/20 transition hover:bg-emerald-400"
+                className="brand-btn-primary inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3.5 text-sm font-bold"
               >
                 <Download className="h-4 w-4" />
                 <span>
@@ -477,7 +476,7 @@ export default async function SoftwareDetailPage({
                   href={software.githubRepoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-slate-800 bg-slate-900 px-3 py-2.5 text-xs font-semibold text-slate-200 transition hover:border-slate-700 hover:bg-slate-800"
+                  className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-slate-800 bg-[#0D1424] px-3 py-2.5 text-xs font-semibold text-slate-200 transition hover:border-brand-border hover:bg-[#131D33]"
                 >
                   <Github className="h-3.5 w-3.5" />
                   <span>GitHub Repo ↗</span>
@@ -488,9 +487,9 @@ export default async function SoftwareDetailPage({
                   href={software.githubReleasesUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-slate-800 bg-slate-900 px-3 py-2.5 text-xs font-semibold text-slate-200 transition hover:border-slate-700 hover:bg-slate-800"
+                  className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-slate-800 bg-[#0D1424] px-3 py-2.5 text-xs font-semibold text-slate-200 transition hover:border-brand-border hover:bg-[#131D33]"
                 >
-                  <Tag className="h-3.5 w-3.5 text-emerald-400" />
+                  <Tag className="brand-text h-3.5 w-3.5" />
                   <span>All Tags ↗</span>
                 </a>
               )}
@@ -501,7 +500,7 @@ export default async function SoftwareDetailPage({
                 href={software.docsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-slate-800/80 bg-slate-950 px-3 py-2 text-xs font-medium text-cyan-300 transition hover:border-cyan-500/40"
+                className="brand-text-secondary inline-flex items-center justify-center gap-1.5 rounded-xl border border-slate-800 bg-[#060B14] px-3 py-2 text-xs font-medium transition hover:border-brand-border"
               >
                 <BookOpen className="h-3.5 w-3.5" />
                 <span>Documentation &amp; Readme</span>
@@ -518,15 +517,15 @@ export default async function SoftwareDetailPage({
           <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800/80 pb-4">
             <div>
               <div className="flex items-center gap-2">
-                <Layers className="h-5 w-5 text-emerald-400" />
-                <h2 className="text-xl font-bold text-white">
+                <Layers className="brand-text h-5 w-5" />
+                <h2 className="text-xl font-bold text-[#F8FAFC]">
                   Categorized Release Artifacts — v{latestRelease.version}
                 </h2>
-                <span className="rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 font-mono text-xs font-semibold text-emerald-400">
+                <span className="brand-badge rounded-md px-2 py-0.5 font-mono text-xs font-semibold">
                   LATEST {latestRelease.channel}
                 </span>
               </div>
-              <p className="mt-1 text-xs text-slate-400">
+              <p className="mt-1 text-xs text-[#94A3B8]">
                 Every artifact is strictly categorized into Standalone
                 Binaries, Source Code Archives, Package Registries, or GitHub
                 Source Trees.
@@ -538,7 +537,7 @@ export default async function SoftwareDetailPage({
                 href={latestRelease.githubTagUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-xl border border-slate-800 bg-slate-900 px-3 py-1.5 text-xs font-medium text-slate-300 hover:border-slate-700 hover:text-white"
+                className="inline-flex items-center gap-1.5 rounded-xl border border-slate-800 bg-[#0D1424] px-3 py-1.5 text-xs font-medium text-slate-300 hover:border-brand-border hover:text-white"
               >
                 <Github className="h-3.5 w-3.5" />
                 <span>GitHub Tag v{latestRelease.version} ↗</span>
@@ -556,8 +555,8 @@ export default async function SoftwareDetailPage({
       <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-3">
         {/* Overview & Architecture Description */}
         <div className="space-y-8 lg:col-span-2">
-          <section className="rounded-2xl border border-slate-800/90 bg-slate-900/50 p-6">
-            <h2 className="text-lg font-bold text-white">
+          <section className="brand-surface-card rounded-2xl p-6">
+            <h2 className="text-lg font-bold text-[#F8FAFC]">
               Software Overview &amp; Highlights
             </h2>
             <div className="mt-4 whitespace-pre-line text-sm leading-relaxed text-slate-300">
@@ -567,10 +566,10 @@ export default async function SoftwareDetailPage({
 
           {/* Quick-Start Setup Steps */}
           {software.setupSteps.length > 0 && (
-            <section className="rounded-2xl border border-slate-800/90 bg-slate-900/50 p-6">
+            <section className="brand-surface-card rounded-2xl p-6">
               <div className="flex items-center gap-2">
-                <Terminal className="h-5 w-5 text-emerald-400" />
-                <h2 className="text-lg font-bold text-white">
+                <Terminal className="brand-text h-5 w-5" />
+                <h2 className="text-lg font-bold text-[#F8FAFC]">
                   Quick-Start &amp; Installation Steps
                 </h2>
               </div>
@@ -578,9 +577,9 @@ export default async function SoftwareDetailPage({
                 {software.setupSteps.map((step, index) => (
                   <li
                     key={index}
-                    className="flex items-start gap-3.5 rounded-xl border border-slate-800/80 bg-slate-950/70 p-4"
+                    className="flex items-start gap-3.5 rounded-xl border border-slate-800/80 bg-[#060B14] p-4"
                   >
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-emerald-500/40 bg-emerald-500/10 font-mono text-xs font-bold text-emerald-400">
+                    <span className="brand-badge flex h-6 w-6 shrink-0 items-center justify-center rounded-full font-mono text-xs font-bold">
                       {index + 1}
                     </span>
                     <span className="text-sm leading-relaxed text-slate-200">
@@ -595,12 +594,12 @@ export default async function SoftwareDetailPage({
 
         {/* System Requirements Sidebar */}
         <div className="space-y-6">
-          <section className="rounded-2xl border border-slate-800/90 bg-slate-900/50 p-6">
-            <h2 className="text-base font-bold text-white">
+          <section className="brand-surface-card rounded-2xl p-6">
+            <h2 className="text-base font-bold text-[#F8FAFC]">
               System Requirements
             </h2>
             {software.requirements.length === 0 ? (
-              <p className="mt-3 text-xs text-slate-400">
+              <p className="mt-3 text-xs text-[#94A3B8]">
                 Standard {software.platform} runtime environment.
               </p>
             ) : (
@@ -610,7 +609,7 @@ export default async function SoftwareDetailPage({
                     key={idx}
                     className="flex items-start gap-2.5 text-sm text-slate-300"
                   >
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
+                    <CheckCircle2 className="brand-text mt-0.5 h-4 w-4 shrink-0" />
                     <span>{req}</span>
                   </li>
                 ))}
@@ -618,38 +617,38 @@ export default async function SoftwareDetailPage({
             )}
           </section>
 
-          <section className="rounded-2xl border border-slate-800/90 bg-slate-900/50 p-6">
-            <h2 className="text-base font-bold text-white">
+          <section className="brand-surface-card rounded-2xl p-6">
+            <h2 className="text-base font-bold text-[#F8FAFC]">
               Package Provenance
             </h2>
             <dl className="mt-4 space-y-3 text-xs">
               <div className="flex justify-between border-b border-slate-800/70 pb-2">
-                <dt className="text-slate-400">Author / Maintainer</dt>
+                <dt className="text-[#94A3B8]">Author / Maintainer</dt>
                 <dd className="font-medium text-white">
                   <a
                     href={OWNER_PORTFOLIO_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-emerald-400 hover:underline"
+                    className="brand-link hover:underline"
                   >
                     {OWNER_NAME} ↗
                   </a>
                 </dd>
               </div>
               <div className="flex justify-between border-b border-slate-800/70 pb-2">
-                <dt className="text-slate-400">Target Platform</dt>
+                <dt className="text-[#94A3B8]">Target Platform</dt>
                 <dd className="font-mono text-slate-200">
                   {software.platform}
                 </dd>
               </div>
               <div className="flex justify-between border-b border-slate-800/70 pb-2">
-                <dt className="text-slate-400">License</dt>
-                <dd className="font-mono text-emerald-400">
+                <dt className="text-[#94A3B8]">License</dt>
+                <dd className="brand-text font-mono">
                   {software.license}
                 </dd>
               </div>
               <div className="flex justify-between">
-                <dt className="text-slate-400">Total Releases</dt>
+                <dt className="text-[#94A3B8]">Total Releases</dt>
                 <dd className="font-mono text-slate-200">
                   {software.releases.length}
                 </dd>
@@ -661,35 +660,35 @@ export default async function SoftwareDetailPage({
 
       {/* Version History & Changelog Section */}
       <section className="mt-12 border-t border-slate-800/80 pt-10">
-        <h2 className="text-xl font-bold text-white">
+        <h2 className="text-xl font-bold text-[#F8FAFC]">
           Version History &amp; Release Notes
         </h2>
-        <p className="mt-1 text-xs text-slate-400">
+        <p className="mt-1 text-xs text-[#94A3B8]">
           Complete release timeline, changelogs, and historical downloadable
           artifacts for {software.name}.
         </p>
 
         <div className="mt-6 space-y-6">
           {latestRelease && (
-            <div className="rounded-2xl border border-emerald-500/30 bg-slate-900/60 p-6">
+            <div className="brand-card-featured rounded-2xl p-6">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <div className="flex flex-wrap items-center gap-2.5">
-                  <span className="rounded-lg border border-emerald-500/40 bg-emerald-500/15 px-2.5 py-1 font-mono text-sm font-bold text-emerald-300">
+                  <span className="brand-badge rounded-lg px-2.5 py-1 font-mono text-sm font-bold">
                     v{latestRelease.version}
                   </span>
-                  <span className="rounded bg-emerald-500 px-2 py-0.5 font-mono text-[10px] font-bold uppercase text-slate-950">
+                  <span className="brand-btn-primary rounded px-2 py-0.5 font-mono text-[10px] font-bold uppercase">
                     Latest
                   </span>
                   <span className="rounded border border-slate-700 bg-slate-800 px-2 py-0.5 font-mono text-[10px] text-slate-300">
                     {latestRelease.channel}
                   </span>
                   {latestRelease.releaseTitle && (
-                    <span className="text-sm font-semibold text-white">
+                    <span className="text-sm font-semibold text-[#F8FAFC]">
                       {latestRelease.releaseTitle}
                     </span>
                   )}
                 </div>
-                <span className="font-mono text-xs text-slate-400">
+                <span className="font-mono text-xs text-[#94A3B8]">
                   {new Date(latestRelease.releaseDate).toLocaleDateString(
                     "en-US",
                     {
@@ -701,7 +700,7 @@ export default async function SoftwareDetailPage({
                 </span>
               </div>
 
-              <div className="mt-4 whitespace-pre-line rounded-xl border border-slate-800/80 bg-slate-950/70 p-4 font-mono text-xs leading-relaxed text-slate-300">
+              <div className="mt-4 whitespace-pre-line rounded-xl border border-slate-800/80 bg-[#060B14] p-4 font-mono text-xs leading-relaxed text-slate-300">
                 {latestRelease.changelog}
               </div>
             </div>
@@ -711,14 +710,14 @@ export default async function SoftwareDetailPage({
           {olderReleases.map((rel) => (
             <details
               key={rel.id}
-              className="group rounded-2xl border border-slate-800/90 bg-slate-900/40 p-5"
+              className="brand-surface-card group rounded-2xl p-5"
             >
               <summary className="flex cursor-pointer list-none flex-wrap items-center justify-between gap-2">
                 <div className="flex flex-wrap items-center gap-2.5">
                   <span className="rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-1 font-mono text-xs font-bold text-slate-200">
                     v{rel.version}
                   </span>
-                  <span className="rounded border border-slate-800 bg-slate-950 px-2 py-0.5 font-mono text-[10px] text-slate-400">
+                  <span className="rounded border border-slate-800 bg-[#060B14] px-2 py-0.5 font-mono text-[10px] text-[#94A3B8]">
                     {rel.channel}
                   </span>
                   {rel.releaseTitle && (
@@ -728,21 +727,21 @@ export default async function SoftwareDetailPage({
                   )}
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="font-mono text-xs text-slate-400">
+                  <span className="font-mono text-xs text-[#94A3B8]">
                     {new Date(rel.releaseDate).toLocaleDateString("en-US", {
                       year: "numeric",
                       month: "short",
                       day: "numeric",
                     })}
                   </span>
-                  <span className="text-xs font-medium text-emerald-400 group-open:underline">
+                  <span className="brand-text text-xs font-medium group-open:underline">
                     Toggle Release &amp; Artifacts ({rel.artifacts.length})
                   </span>
                 </div>
               </summary>
 
               <div className="mt-5 space-y-5 border-t border-slate-800/80 pt-4">
-                <div className="whitespace-pre-line rounded-xl border border-slate-800/80 bg-slate-950/70 p-4 font-mono text-xs leading-relaxed text-slate-300">
+                <div className="whitespace-pre-line rounded-xl border border-slate-800/80 bg-[#060B14] p-4 font-mono text-xs leading-relaxed text-slate-300">
                   {rel.changelog}
                 </div>
                 <ArtifactMatrix artifacts={rel.artifacts} />
@@ -754,4 +753,3 @@ export default async function SoftwareDetailPage({
     </div>
   );
 }
-

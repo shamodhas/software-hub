@@ -48,15 +48,15 @@ function AdminLoginForm() {
   }
 
   return (
-    <div className="rounded-3xl border border-slate-800/90 bg-slate-900/80 p-8 shadow-2xl">
+    <div className="brand-card-featured rounded-3xl p-8 shadow-2xl">
       <div className="flex justify-center">
         <BrandLogo size="lg" />
       </div>
 
-      <h1 className="mt-5 text-center text-2xl font-bold text-white">
+      <h1 className="mt-5 text-center text-2xl font-bold text-[#F8FAFC]">
         Admin Release Console
       </h1>
-      <p className="mt-1 text-center text-xs text-slate-400">
+      <p className="mt-1 text-center text-xs text-[#94A3B8]">
         Sign in to manage software packages, versions, and categorized release
         artifacts on {SITE_NAME}.
       </p>
@@ -80,7 +80,7 @@ function AdminLoginForm() {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               placeholder="admin"
-              className="w-full rounded-xl border border-slate-800 bg-slate-950 py-2.5 pl-10 pr-4 text-sm text-white placeholder-slate-500 focus:border-emerald-500/60 focus:outline-none"
+              className="brand-input w-full rounded-xl py-2.5 pl-10 pr-4 text-sm placeholder-slate-500"
             />
           </div>
         </div>
@@ -97,7 +97,7 @@ function AdminLoginForm() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••••••"
-              className="w-full rounded-xl border border-slate-800 bg-slate-950 py-2.5 pl-10 pr-4 text-sm text-white placeholder-slate-500 focus:border-emerald-500/60 focus:outline-none"
+              className="brand-input w-full rounded-xl py-2.5 pl-10 pr-4 text-sm placeholder-slate-500"
             />
           </div>
         </div>
@@ -105,7 +105,7 @@ function AdminLoginForm() {
         <button
           type="submit"
           disabled={loading}
-          className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-500 px-4 py-3 text-sm font-bold text-slate-950 shadow-lg shadow-emerald-500/20 transition hover:bg-emerald-400 disabled:opacity-50"
+          className="brand-btn-primary mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-bold disabled:opacity-50"
         >
           <span>{loading ? "Authenticating..." : "Sign In to Console"}</span>
           <ArrowRight className="h-4 w-4" />
