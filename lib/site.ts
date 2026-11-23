@@ -55,7 +55,7 @@ export const ARTIFACT_TYPE_META: Record<
   EXECUTABLE: {
     title: "Compiled Executable / Binary",
     badge: "Executable Binary",
-    color: "emerald",
+    color: "sky",
     order: 1,
   },
   PORTABLE_ZIP: {

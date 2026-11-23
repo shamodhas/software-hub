@@ -114,7 +114,7 @@ export function SoftwareFormClient({
       <div className="flex items-center justify-between">
         <Link
           href="/admin"
-          className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-400 hover:text-emerald-400"
+          className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-400 hover:text-brand-primary"
         >
           <ArrowLeft className="h-4 w-4" />
           <span>Back to Admin Dashboard</span>
@@ -123,7 +123,7 @@ export function SoftwareFormClient({
         {mode === "edit" && form.id && (
           <Link
             href={`/admin/software/${form.id}/releases`}
-            className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1.5 text-xs font-semibold text-emerald-300 hover:bg-emerald-500/20"
+            className="brand-badge rounded-xl px-3.5 py-1.5 text-xs font-semibold hover:opacity-90"
           >
             Manage Releases &amp; Artifacts →
           </Link>
@@ -160,7 +160,7 @@ export function SoftwareFormClient({
                 value={form.name}
                 onChange={(e) => handleNameChange(e.target.value)}
                 placeholder="e.g., Android Mirror"
-                className="mt-1 w-full rounded-xl border border-slate-800 bg-slate-950 px-3.5 py-2 text-sm text-white focus:border-emerald-500/60 focus:outline-none"
+                className="brand-input mt-1 w-full rounded-xl px-3.5 py-2 text-sm"
               />
             </div>
 
@@ -174,7 +174,7 @@ export function SoftwareFormClient({
                 value={form.slug}
                 onChange={(e) => setForm({ ...form, slug: e.target.value })}
                 placeholder="android-mirror"
-                className="mt-1 w-full rounded-xl border border-slate-800 bg-slate-950 px-3.5 py-2 font-mono text-sm text-white focus:border-emerald-500/60 focus:outline-none"
+                className="brand-input mt-1 w-full rounded-xl px-3.5 py-2 font-mono text-sm"
               />
             </div>
 
@@ -187,7 +187,7 @@ export function SoftwareFormClient({
                 onChange={(e) =>
                   setForm({ ...form, categoryId: e.target.value })
                 }
-                className="mt-1 w-full rounded-xl border border-slate-800 bg-slate-950 px-3.5 py-2 text-sm text-white focus:border-emerald-500/60 focus:outline-none"
+                className="brand-input mt-1 w-full rounded-xl px-3.5 py-2 text-sm"
               >
                 {categories.map((cat) => (
                   <option key={cat.id} value={cat.id}>
@@ -207,7 +207,7 @@ export function SoftwareFormClient({
                 value={form.platform}
                 onChange={(e) => setForm({ ...form, platform: e.target.value })}
                 placeholder="Windows x64, Cross-Platform, JVM / Node.js..."
-                className="mt-1 w-full rounded-xl border border-slate-800 bg-slate-950 px-3.5 py-2 text-sm text-white focus:border-emerald-500/60 focus:outline-none"
+                className="brand-input mt-1 w-full rounded-xl px-3.5 py-2 text-sm"
               />
             </div>
 
@@ -221,7 +221,7 @@ export function SoftwareFormClient({
                 value={form.license}
                 onChange={(e) => setForm({ ...form, license: e.target.value })}
                 placeholder="MIT, Apache-2.0, GPL-3.0..."
-                className="mt-1 w-full rounded-xl border border-slate-800 bg-slate-950 px-3.5 py-2 text-sm text-white focus:border-emerald-500/60 focus:outline-none"
+                className="brand-input mt-1 w-full rounded-xl px-3.5 py-2 text-sm"
               />
             </div>
 
@@ -232,7 +232,7 @@ export function SoftwareFormClient({
               <select
                 value={form.iconName}
                 onChange={(e) => setForm({ ...form, iconName: e.target.value })}
-                className="mt-1 w-full rounded-xl border border-slate-800 bg-slate-950 px-3.5 py-2 text-sm text-white focus:border-emerald-500/60 focus:outline-none"
+                className="brand-input mt-1 w-full rounded-xl px-3.5 py-2 text-sm"
               >
                 <option value="Package">Package (Default)</option>
                 <option value="Smartphone">Smartphone (Android / Mobile)</option>
@@ -249,7 +249,7 @@ export function SoftwareFormClient({
               <select
                 value={form.status}
                 onChange={(e) => setForm({ ...form, status: e.target.value })}
-                className="mt-1 w-full rounded-xl border border-slate-800 bg-slate-950 px-3.5 py-2 text-sm text-white focus:border-emerald-500/60 focus:outline-none"
+                className="brand-input mt-1 w-full rounded-xl px-3.5 py-2 text-sm"
               >
                 <option value="PUBLISHED">PUBLISHED (Live on portal)</option>
                 <option value="DRAFT">DRAFT (Hidden from public)</option>
@@ -265,7 +265,7 @@ export function SoftwareFormClient({
                   onChange={(e) =>
                     setForm({ ...form, featured: e.target.checked })
                   }
-                  className="h-4 w-4 rounded border-slate-700 bg-slate-950 text-emerald-500"
+                  className="h-4 w-4 rounded border-slate-700 bg-slate-950 text-sky-400"
                 />
                 <span>Feature on Home Page Flagship Spotlight</span>
               </label>
@@ -282,7 +282,7 @@ export function SoftwareFormClient({
               value={form.tagline}
               onChange={(e) => setForm({ ...form, tagline: e.target.value })}
               placeholder="Concise summary shown on cards and SEO meta tags..."
-              className="mt-1 w-full rounded-xl border border-slate-800 bg-slate-950 px-3.5 py-2 text-sm text-white focus:border-emerald-500/60 focus:outline-none"
+              className="brand-input mt-1 w-full rounded-xl px-3.5 py-2 text-sm"
             />
           </div>
 
@@ -298,7 +298,7 @@ export function SoftwareFormClient({
                 setForm({ ...form, description: e.target.value })
               }
               placeholder="Detailed overview, architecture notes, and key features..."
-              className="mt-1 w-full rounded-xl border border-slate-800 bg-slate-950 p-3.5 text-sm text-white focus:border-emerald-500/60 focus:outline-none"
+              className="brand-input mt-1 w-full rounded-xl p-3.5 text-sm"
             />
           </div>
         </div>
@@ -320,7 +320,7 @@ export function SoftwareFormClient({
                   setForm({ ...form, githubRepoUrl: e.target.value })
                 }
                 placeholder="https://github.com/shamodhas/..."
-                className="mt-1 w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-xs text-white focus:border-emerald-500/60 focus:outline-none"
+                className="brand-input mt-1 w-full rounded-xl px-3 py-2 text-xs"
               />
             </div>
             <div>
@@ -334,7 +334,7 @@ export function SoftwareFormClient({
                   setForm({ ...form, githubReleasesUrl: e.target.value })
                 }
                 placeholder="https://github.com/shamodhas/.../releases"
-                className="mt-1 w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-xs text-white focus:border-emerald-500/60 focus:outline-none"
+                className="brand-input mt-1 w-full rounded-xl px-3 py-2 text-xs"
               />
             </div>
             <div>
@@ -346,7 +346,7 @@ export function SoftwareFormClient({
                 value={form.docsUrl}
                 onChange={(e) => setForm({ ...form, docsUrl: e.target.value })}
                 placeholder="https://github.com/shamodhas/...#readme"
-                className="mt-1 w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-xs text-white focus:border-emerald-500/60 focus:outline-none"
+                className="brand-input mt-1 w-full rounded-xl px-3 py-2 text-xs"
               />
             </div>
           </div>
@@ -366,7 +366,7 @@ export function SoftwareFormClient({
                   requirements: [...form.requirements, ""],
                 })
               }
-              className="inline-flex items-center gap-1 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 text-xs font-semibold text-emerald-300 hover:bg-emerald-500/20"
+              className="brand-badge inline-flex items-center gap-1 rounded-lg px-2.5 py-1 text-xs font-semibold hover:opacity-90"
             >
               <Plus className="h-3.5 w-3.5" />
               <span>Add Requirement</span>
@@ -420,7 +420,7 @@ export function SoftwareFormClient({
                   setupSteps: [...form.setupSteps, ""],
                 })
               }
-              className="inline-flex items-center gap-1 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 text-xs font-semibold text-emerald-300 hover:bg-emerald-500/20"
+              className="brand-badge inline-flex items-center gap-1 rounded-lg px-2.5 py-1 text-xs font-semibold hover:opacity-90"
             >
               <Plus className="h-3.5 w-3.5" />
               <span>Add Step</span>
@@ -430,7 +430,7 @@ export function SoftwareFormClient({
           <div className="mt-3 space-y-2.5">
             {form.setupSteps.map((step, idx) => (
               <div key={idx} className="flex items-center gap-2">
-                <span className="font-mono text-xs text-emerald-400">
+                <span className="brand-text font-mono text-xs">
                   #{idx + 1}
                 </span>
                 <input
@@ -471,7 +471,7 @@ export function SoftwareFormClient({
           <button
             type="submit"
             disabled={saving}
-            className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-6 py-2.5 text-xs font-bold text-slate-950 shadow-lg shadow-emerald-500/20 hover:bg-emerald-400 disabled:opacity-50"
+            className="brand-btn-primary inline-flex items-center gap-2 rounded-xl px-6 py-2.5 text-xs font-bold disabled:opacity-50"
           >
             <Save className="h-4 w-4" />
             <span>

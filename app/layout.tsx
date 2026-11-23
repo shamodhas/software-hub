@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -33,9 +34,9 @@ export const metadata: Metadata = {
   creator: OWNER_NAME,
   publisher: OWNER_NAME,
   icons: {
-    icon: "/images/logo-blue.png",
-    shortcut: "/images/logo-blue.png",
-    apple: "/images/logo-gold.png",
+    icon: "/images/logo-blue-removebg.png",
+    shortcut: "/images/logo-blue-removebg.png",
+    apple: "/images/logo-gold-removebg.png",
   },
   alternates: {
     canonical: CANONICAL_SITE_URL,
@@ -49,7 +50,7 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
     images: [
       {
-        url: "/images/logo-blue.png",
+        url: "/images/logo-blue-removebg.png",
         width: 512,
         height: 512,
         alt: `${SITE_NAME} — ${OWNER_NAME}`,
@@ -60,7 +61,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${SITE_NAME} — Software, Cloud, DevOps & AI Engineering Releases by ${OWNER_NAME}`,
     description: SITE_DESCRIPTION,
-    images: ["/images/logo-blue.png"],
+    images: ["/images/logo-blue-removebg.png"],
   },
   robots: {
     index: true,
@@ -154,13 +155,28 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const adsenseClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT?.trim();
+
   return (
-    <html lang="en" className="dark scroll-smooth">
-      <body className="flex min-h-screen flex-col bg-slate-950 text-slate-100">
+    <html
+      lang="en"
+      data-brand-theme="blue"
+      className="dark scroll-smooth"
+    >
+      <body className="flex min-h-screen flex-col bg-[#060B14] text-[#F8FAFC]">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(rootJsonLd) }}
         />
+        {adsenseClient && (
+          <Script
+            id="google-adsense"
+            async
+            strategy="afterInteractive"
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient}`}
+            crossOrigin="anonymous"
+          />
+        )}
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

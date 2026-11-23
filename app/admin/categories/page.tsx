@@ -148,7 +148,7 @@ export default function AdminCategoriesPage() {
                 value={name}
                 onChange={(e) => handleNameChange(e.target.value)}
                 placeholder="e.g., Desktop Utilities"
-                className="mt-1 w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-xs text-white focus:border-emerald-500/60 focus:outline-none"
+                className="brand-input mt-1 w-full rounded-xl px-3 py-2 text-xs"
               />
             </div>
 
@@ -162,7 +162,7 @@ export default function AdminCategoriesPage() {
                 value={slug}
                 onChange={(e) => setSlug(e.target.value)}
                 placeholder="desktop-utilities"
-                className="mt-1 w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 font-mono text-xs text-white focus:border-emerald-500/60 focus:outline-none"
+                className="brand-input mt-1 w-full rounded-xl px-3 py-2 font-mono text-xs"
               />
             </div>
 
@@ -174,14 +174,14 @@ export default function AdminCategoriesPage() {
                 type="number"
                 value={sortOrder}
                 onChange={(e) => setSortOrder(Number(e.target.value))}
-                className="mt-1 w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 font-mono text-xs text-white focus:border-emerald-500/60 focus:outline-none"
+                className="brand-input mt-1 w-full rounded-xl px-3 py-2 font-mono text-xs"
               />
             </div>
 
             <div className="flex items-end">
               <button
                 type="submit"
-                className="inline-flex w-full items-center justify-center gap-1.5 rounded-xl bg-emerald-500 px-4 py-2 text-xs font-bold text-slate-950 hover:bg-emerald-400"
+                className="brand-btn-primary inline-flex w-full items-center justify-center gap-1.5 rounded-xl px-4 py-2 text-xs font-bold"
               >
                 <Plus className="h-4 w-4" />
                 <span>Add Category</span>
@@ -198,7 +198,7 @@ export default function AdminCategoriesPage() {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Short summary displayed on the public portal..."
-              className="mt-1 w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-xs text-white focus:border-emerald-500/60 focus:outline-none"
+              className="brand-input mt-1 w-full rounded-xl px-3 py-2 text-xs"
             />
           </div>
         </form>
@@ -275,7 +275,7 @@ export default function AdminCategoriesPage() {
                     <span className="block text-[10px] uppercase text-slate-400">
                       Linked Software
                     </span>
-                    <span className="mt-1.5 inline-block rounded-md bg-slate-800 px-2.5 py-1 font-mono text-xs text-emerald-400">
+                    <span className="brand-badge mt-1.5 inline-block rounded-md px-2.5 py-1 font-mono text-xs">
                       {cat._count?.software ?? 0} package(s)
                     </span>
                   </div>
@@ -284,7 +284,7 @@ export default function AdminCategoriesPage() {
                     <button
                       type="button"
                       onClick={() => handleUpdate(cat)}
-                      className="inline-flex items-center gap-1 rounded-xl bg-emerald-500/20 px-3 py-1.5 text-xs font-semibold text-emerald-300 hover:bg-emerald-500/30"
+                      className="brand-badge inline-flex items-center gap-1 rounded-xl px-3 py-1.5 text-xs font-semibold hover:opacity-90"
                     >
                       <Save className="h-3.5 w-3.5" />
                       <span>Save</span>

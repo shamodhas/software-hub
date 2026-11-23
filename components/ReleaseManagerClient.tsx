@@ -348,7 +348,7 @@ export function ReleaseManagerClient({
       <div className="flex flex-wrap items-center justify-between gap-3">
         <Link
           href="/admin"
-          className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-400 hover:text-emerald-400"
+          className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-400 hover:text-brand-primary"
         >
           <ArrowLeft className="h-4 w-4" />
           <span>Back to Admin Dashboard</span>
@@ -364,7 +364,7 @@ export function ReleaseManagerClient({
           <Link
             href={`/software/${software.slug}`}
             target="_blank"
-            className="inline-flex items-center gap-1 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 text-xs font-semibold text-emerald-300 hover:bg-emerald-500/20"
+            className="brand-badge inline-flex items-center gap-1 rounded-xl px-3 py-1.5 text-xs font-semibold hover:opacity-90"
           >
             <span>View Public Release Page</span>
             <ExternalLink className="h-3 w-3" />
@@ -395,7 +395,7 @@ export function ReleaseManagerClient({
         className="mt-6 rounded-2xl border border-slate-800/90 bg-slate-900/60 p-6"
       >
         <div className="flex items-center gap-2">
-          <Tag className="h-4 w-4 text-emerald-400" />
+          <Tag className="brand-text h-4 w-4" />
           <h2 className="text-sm font-bold text-white">
             Publish New Version Release
           </h2>
@@ -412,7 +412,7 @@ export function ReleaseManagerClient({
               value={version}
               onChange={(e) => setVersion(e.target.value)}
               placeholder="e.g., 1.1.0"
-              className="mt-1 w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 font-mono text-xs text-white focus:border-emerald-500/60 focus:outline-none"
+              className="brand-input mt-1 w-full rounded-xl px-3 py-2 font-mono text-xs"
             />
           </div>
 
@@ -425,7 +425,7 @@ export function ReleaseManagerClient({
               value={releaseTitle}
               onChange={(e) => setReleaseTitle(e.target.value)}
               placeholder="e.g., v1.1.0 — Performance & Auto-Updater Improvements"
-              className="mt-1 w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-xs text-white focus:border-emerald-500/60 focus:outline-none"
+              className="brand-input mt-1 w-full rounded-xl px-3 py-2 text-xs"
             />
           </div>
 
@@ -436,7 +436,7 @@ export function ReleaseManagerClient({
             <select
               value={channel}
               onChange={(e) => setChannel(e.target.value)}
-              className="mt-1 w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-xs text-white focus:border-emerald-500/60 focus:outline-none"
+              className="brand-input mt-1 w-full rounded-xl px-3 py-2 text-xs"
             >
               <option value="STABLE">STABLE</option>
               <option value="BETA">BETA</option>
@@ -455,7 +455,7 @@ export function ReleaseManagerClient({
               value={githubTagUrl}
               onChange={(e) => setGithubTagUrl(e.target.value)}
               placeholder="https://github.com/shamodhas/.../releases/tag/v1.1.0"
-              className="mt-1 w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-xs text-white focus:border-emerald-500/60 focus:outline-none"
+              className="brand-input mt-1 w-full rounded-xl px-3 py-2 text-xs"
             />
           </div>
 
@@ -465,7 +465,7 @@ export function ReleaseManagerClient({
                 type="checkbox"
                 checked={isLatest}
                 onChange={(e) => setIsLatest(e.target.checked)}
-                className="h-4 w-4 rounded border-slate-700 bg-slate-950 text-emerald-500"
+                className="h-4 w-4 rounded border-slate-700 bg-slate-950 text-sky-400"
               />
               <span>
                 Mark as <strong>Latest Release</strong> (automatically unsets{" "}
@@ -485,7 +485,7 @@ export function ReleaseManagerClient({
             value={changelog}
             onChange={(e) => setChangelog(e.target.value)}
             placeholder="- Added standalone Windows x64 executable...\n- Fixed wireless ADB reconnection..."
-            className="mt-1 w-full rounded-xl border border-slate-800 bg-slate-950 p-3 font-mono text-xs text-white focus:border-emerald-500/60 focus:outline-none"
+            className="brand-input mt-1 w-full rounded-xl p-3 font-mono text-xs"
           />
         </div>
 
@@ -493,7 +493,7 @@ export function ReleaseManagerClient({
           <button
             type="submit"
             disabled={creatingRelease}
-            className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-500 px-5 py-2.5 text-xs font-bold text-slate-950 shadow-sm shadow-emerald-500/20 hover:bg-emerald-400 disabled:opacity-50"
+            className="brand-btn-primary inline-flex items-center gap-1.5 rounded-xl px-5 py-2.5 text-xs font-bold disabled:opacity-50"
           >
             <Plus className="h-4 w-4" />
             <span>
@@ -508,23 +508,23 @@ export function ReleaseManagerClient({
         {releases.map((rel) => (
           <div
             key={rel.id}
-            className={`rounded-2xl border p-6 ${
+            className={`rounded-2xl p-6 ${
               rel.isLatest
-                ? "border-emerald-500/40 bg-slate-900/70"
-                : "border-slate-800/90 bg-slate-900/40"
+                ? "brand-card-featured"
+                : "brand-surface-card"
             }`}
           >
             {/* Release Header */}
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/80 pb-4">
               <div className="flex flex-wrap items-center gap-2.5">
-                <span className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 font-mono text-sm font-bold text-emerald-400">
+                <span className="brand-badge rounded-lg px-2.5 py-1 font-mono text-sm font-bold">
                   v{rel.version}
                 </span>
                 <span className="rounded border border-slate-700 bg-slate-800 px-2 py-0.5 font-mono text-[10px] font-semibold text-slate-300">
                   {rel.channel}
                 </span>
                 {rel.isLatest ? (
-                  <span className="inline-flex items-center gap-1 rounded-md bg-emerald-500 px-2 py-0.5 font-mono text-[10px] font-bold uppercase text-slate-950">
+                  <span className="brand-btn-primary inline-flex items-center gap-1 rounded-md px-2 py-0.5 font-mono text-[10px] font-bold uppercase">
                     <CheckCircle2 className="h-3 w-3" />
                     Latest Active Release
                   </span>
@@ -532,7 +532,7 @@ export function ReleaseManagerClient({
                   <button
                     type="button"
                     onClick={() => handleSetLatest(rel.id)}
-                    className="rounded-md border border-slate-700 bg-slate-900 px-2 py-0.5 text-[11px] font-medium text-slate-300 hover:border-emerald-500/40 hover:text-emerald-300"
+                    className="rounded-md border border-slate-700 bg-slate-900 px-2 py-0.5 text-[11px] font-medium text-slate-300 hover:border-brand-border hover:text-brand-primary"
                   >
                     Set as Latest
                   </button>
@@ -613,7 +613,7 @@ export function ReleaseManagerClient({
                   <button
                     type="button"
                     onClick={() => handleSaveReleaseEdit(rel.id)}
-                    className="inline-flex items-center gap-1 rounded-lg bg-emerald-500 px-3 py-1 text-xs font-bold text-slate-950"
+                    className="brand-btn-primary inline-flex items-center gap-1 rounded-lg px-3 py-1 text-xs font-bold"
                   >
                     <Save className="h-3.5 w-3.5" />
                     <span>Save Release</span>
@@ -639,7 +639,7 @@ export function ReleaseManagerClient({
                       activeArtifactReleaseId === rel.id ? null : rel.id
                     )
                   }
-                  className="inline-flex items-center gap-1 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-300 hover:bg-emerald-500/20"
+                  className="brand-badge inline-flex items-center gap-1 rounded-lg px-3 py-1 text-xs font-semibold hover:opacity-90"
                 >
                   <Plus className="h-3.5 w-3.5" />
                   <span>Add Artifact to v{rel.version}</span>
@@ -654,7 +654,7 @@ export function ReleaseManagerClient({
                   >
                     <div className="space-y-1">
                       <div className="flex flex-wrap items-center gap-2">
-                        <span className="rounded border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] font-bold text-emerald-400">
+                        <span className="brand-badge rounded px-2 py-0.5 font-mono text-[10px] font-bold">
                           {art.artifactType}
                         </span>
                         <span className="font-semibold text-white">
@@ -678,7 +678,7 @@ export function ReleaseManagerClient({
                         {art.sha256 && (
                           <span>SHA256: {art.sha256.slice(0, 16)}…</span>
                         )}
-                        <span className="text-emerald-400">
+                        <span className="brand-text">
                           {art.downloadCount} downloads
                         </span>
                       </div>
@@ -700,10 +700,10 @@ export function ReleaseManagerClient({
               {activeArtifactReleaseId === rel.id && (
                 <form
                   onSubmit={(e) => handleAddArtifact(e, rel.id)}
-                  className="mt-4 rounded-2xl border border-emerald-500/30 bg-slate-950 p-5"
+                  className="brand-card-featured mt-4 rounded-2xl p-5"
                 >
                   <div className="flex flex-wrap items-center justify-between gap-2">
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-400">
+                    <h4 className="brand-text text-xs font-bold uppercase tracking-wider">
                       Attach Categorized Artifact to v{rel.version}
                     </h4>
 
@@ -713,7 +713,7 @@ export function ReleaseManagerClient({
                         onClick={() => setUploadMode("url")}
                         className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1 font-semibold transition ${
                           uploadMode === "url"
-                            ? "bg-emerald-500 text-slate-950"
+                            ? "brand-btn-primary"
                             : "text-slate-300 hover:text-white"
                         }`}
                       >
@@ -725,7 +725,7 @@ export function ReleaseManagerClient({
                         onClick={() => setUploadMode("file")}
                         className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1 font-semibold transition ${
                           uploadMode === "file"
-                            ? "bg-emerald-500 text-slate-950"
+                            ? "brand-btn-primary"
                             : "text-slate-300 hover:text-white"
                         }`}
                       >
@@ -743,7 +743,7 @@ export function ReleaseManagerClient({
                       <select
                         value={artifactType}
                         onChange={(e) => applyArtifactPreset(e.target.value)}
-                        className="mt-1 w-full rounded-xl border border-slate-800 bg-slate-900 px-3 py-2 text-xs text-white focus:border-emerald-500/60 focus:outline-none"
+                        className="brand-input mt-1 w-full rounded-xl px-3 py-2 text-xs"
                       >
                         {ARTIFACT_TYPE_OPTIONS.map((opt) => (
                           <option key={opt.value} value={opt.value}>
@@ -763,7 +763,7 @@ export function ReleaseManagerClient({
                         value={artifactLabel}
                         onChange={(e) => setArtifactLabel(e.target.value)}
                         placeholder="Windows x64 Standalone Executable (.exe)"
-                        className="mt-1 w-full rounded-xl border border-slate-800 bg-slate-900 px-3 py-2 text-xs text-white focus:border-emerald-500/60 focus:outline-none"
+                        className="brand-input mt-1 w-full rounded-xl px-3 py-2 text-xs"
                       />
                     </div>
                   </div>
@@ -779,7 +779,7 @@ export function ReleaseManagerClient({
                         value={artifactUrl}
                         onChange={(e) => setArtifactUrl(e.target.value)}
                         placeholder="https://github.com/shamodhas/android-mirror/releases/download/v1.0.0/AndroidMirror.exe"
-                        className="mt-1 w-full rounded-xl border border-slate-800 bg-slate-900 px-3 py-2 font-mono text-xs text-white focus:border-emerald-500/60 focus:outline-none"
+                        className="brand-input mt-1 w-full rounded-xl px-3 py-2 font-mono text-xs"
                       />
                     </div>
                   ) : (
@@ -793,7 +793,7 @@ export function ReleaseManagerClient({
                         onChange={(e) =>
                           setSelectedFile(e.target.files?.[0] || null)
                         }
-                        className="mt-1 w-full rounded-xl border border-slate-800 bg-slate-900 px-3 py-2 text-xs text-slate-300 file:mr-3 file:rounded-lg file:border-0 file:bg-emerald-500 file:px-3 file:py-1 file:text-xs file:font-bold file:text-slate-950"
+                        className="brand-input mt-1 w-full rounded-xl px-3 py-2 text-xs text-slate-300 file:mr-3 file:rounded-lg file:border-0 file:bg-sky-400 file:px-3 file:py-1 file:text-xs file:font-bold file:text-slate-950"
                       />
                       <p className="mt-1 text-[11px] text-slate-400">
                         Saved to{" "}
@@ -813,7 +813,7 @@ export function ReleaseManagerClient({
                         value={artifactFileName}
                         onChange={(e) => setArtifactFileName(e.target.value)}
                         placeholder="AndroidMirror.exe"
-                        className="mt-1 w-full rounded-xl border border-slate-800 bg-slate-900 px-3 py-1.5 font-mono text-xs text-white"
+                        className="brand-input mt-1 w-full rounded-xl px-3 py-1.5 font-mono text-xs"
                       />
                     </div>
                     <div>
@@ -825,7 +825,7 @@ export function ReleaseManagerClient({
                         value={artifactFileSize}
                         onChange={(e) => setArtifactFileSize(e.target.value)}
                         placeholder="14.2 MB"
-                        className="mt-1 w-full rounded-xl border border-slate-800 bg-slate-900 px-3 py-1.5 font-mono text-xs text-white"
+                        className="brand-input mt-1 w-full rounded-xl px-3 py-1.5 font-mono text-xs"
                       />
                     </div>
                     <div>
@@ -837,7 +837,7 @@ export function ReleaseManagerClient({
                         value={artifactSha256}
                         onChange={(e) => setArtifactSha256(e.target.value)}
                         placeholder="e3b0c44298fc1c149afb..."
-                        className="mt-1 w-full rounded-xl border border-slate-800 bg-slate-900 px-3 py-1.5 font-mono text-xs text-white"
+                        className="brand-input mt-1 w-full rounded-xl px-3 py-1.5 font-mono text-xs"
                       />
                     </div>
                   </div>
@@ -853,7 +853,7 @@ export function ReleaseManagerClient({
                     <button
                       type="submit"
                       disabled={addingArtifact}
-                      className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-500 px-4 py-2 text-xs font-bold text-slate-950 hover:bg-emerald-400 disabled:opacity-50"
+                      className="brand-btn-primary inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-bold disabled:opacity-50"
                     >
                       <Plus className="h-3.5 w-3.5" />
                       <span>

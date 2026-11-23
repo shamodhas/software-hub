@@ -21,12 +21,12 @@ export function CopyShaButton({ sha256 }: { sha256: string }) {
       type="button"
       onClick={handleCopy}
       title={`Copy full SHA-256: ${sha256}`}
-      className="inline-flex items-center gap-1.5 rounded-lg border border-slate-800 bg-slate-950 px-2.5 py-1 font-mono text-[11px] text-slate-300 transition hover:border-emerald-500/40 hover:text-emerald-300"
+      className="inline-flex items-center gap-1.5 rounded-lg border border-slate-800 bg-[#060B14] px-2.5 py-1 font-mono text-[11px] text-slate-300 transition hover:border-brand-border hover:text-brand-secondary"
     >
       {copied ? (
         <>
-          <Check className="h-3 w-3 text-emerald-400" />
-          <span className="text-emerald-400">Copied SHA-256!</span>
+          <Check className="brand-text h-3 w-3" />
+          <span className="brand-text">Copied SHA-256!</span>
         </>
       ) : (
         <>
@@ -37,4 +37,3 @@ export function CopyShaButton({ sha256 }: { sha256: string }) {
     </button>
   );
 }
-

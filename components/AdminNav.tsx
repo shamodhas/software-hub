@@ -43,10 +43,10 @@ export function AdminNav() {
   ];
 
   return (
-    <div className="border-b border-slate-800/90 bg-slate-900/70">
+    <div className="border-b border-slate-800/90 bg-[#0D1424]/85">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="mr-2 inline-flex items-center gap-1.5 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 text-xs font-bold text-emerald-400">
+          <span className="brand-badge mr-2 inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-bold">
             <ShieldCheck className="h-3.5 w-3.5" />
             <span>Admin Control Panel</span>
           </span>
@@ -63,8 +63,8 @@ export function AdminNav() {
                 href={item.href}
                 className={`inline-flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-semibold transition ${
                   active
-                    ? "bg-emerald-500 text-slate-950"
-                    : "text-slate-300 hover:bg-slate-800 hover:text-white"
+                    ? "brand-btn-primary"
+                    : "text-slate-300 hover:bg-[#131D33] hover:text-white"
                 }`}
               >
                 <Icon className="h-3.5 w-3.5" />
@@ -77,7 +77,7 @@ export function AdminNav() {
         <div className="flex items-center gap-2">
           <Link
             href="/"
-            className="inline-flex items-center gap-1 rounded-xl border border-slate-800 bg-slate-950 px-3 py-1.5 text-xs font-medium text-slate-300 hover:border-slate-700 hover:text-white"
+            className="inline-flex items-center gap-1 rounded-xl border border-slate-800 bg-[#060B14] px-3 py-1.5 text-xs font-medium text-slate-300 hover:border-brand-border hover:text-white"
           >
             <span>Public Portal</span>
             <ExternalLink className="h-3 w-3" />
@@ -95,4 +95,3 @@ export function AdminNav() {
     </div>
   );
 }
-

@@ -45,7 +45,13 @@ export function SecretAdminTrigger() {
       onClick={handleSecretClick}
       className="inline-flex select-none items-center gap-1.5 font-mono text-[11px] text-slate-400"
     >
-      <span className="h-2 w-2 rounded-full bg-emerald-400"></span>
+      <span
+        className="brand-transition h-2 w-2 rounded-full"
+        style={{
+          backgroundColor: "var(--brand-primary)",
+          boxShadow: "0 0 8px var(--brand-glow)",
+        }}
+      />
       Release Registry Active
     </span>
   );
