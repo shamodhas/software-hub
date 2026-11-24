@@ -173,6 +173,11 @@ body {
   }
 }
 
+/* Hide unfilled AdSense containers cleanly */
+ins.adsbygoogle[data-ad-status="unfilled"] {
+  display: none !important;
+}
+
 /* Custom subtle scrollbars */
 ::-webkit-scrollbar {
   width: 8px;
