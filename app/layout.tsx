@@ -160,7 +160,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const adsenseClient =
-    process.env.NEXT_PUBLIC_ADSENSE_CLIENT?.trim() || ADSENSE_CLIENT_ID;
+    process.env.NEXT_PUBLIC_ADSENSE_CLIENT || "ca-pub-8135575817026090";
 
   return (
     <html
